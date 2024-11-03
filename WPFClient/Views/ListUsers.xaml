@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="ListUsers"
         Height="450" 
-        Width="800">
+        Width="800"
+        Icon="../Resources/Images/list-users.png">
     <ScrollViewer
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"

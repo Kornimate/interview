@@ -26,14 +26,23 @@ namespace WPFClient.Models
                 {
                     response = _client.GetAsync($"/api/Users/1").GetAwaiter().GetResult();
 
-                    RequestCompleted?.Invoke(this, $"[info][{Environment.CurrentManagedThreadId}] request completed with status: {(int)response.StatusCode}");
+                    RequestCompleted?.Invoke(this, $"{GetThreadLoggingTemplate()} request completed with status: {(int)response.StatusCode}");
                 }
                 catch (Exception)
                 {
                     var code = response == null ? 000 : (int)response.StatusCode;
-                    RequestCompleted?.Invoke(this, $"[info] request completed with status: {code}");
+                    RequestCompleted?.Invoke(this, $"{GetThreadLoggingTemplate()} request completed with status: {code}");
                 } 
             }
+        }
+
+        /// <summary>
+        /// Static method to get logging template for UI as string
+        /// </summary>
+        /// <returns></returns>
+        private static string GetThreadLoggingTemplate()
+        {
+            return $"[Thread {Environment.CurrentManagedThreadId}][info]";
         }
     }
 }

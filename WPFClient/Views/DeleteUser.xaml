@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views"
         mc:Ignorable="d"
-        Title="Delete User" Height="450" Width="800"  Icon="../Resources/Images/delete-user.png">
+        Title="Delete User"
+        Height="450"
+        Width="800"
+        Icon="../Resources/Images/delete-user.png">
     <StackPanel
             HorizontalAlignment="Center"
             VerticalAlignment="Center">

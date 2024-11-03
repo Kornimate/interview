@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\add-user.png" />
+    <None Remove="Resources\Images\api-call.png" />
     <None Remove="Resources\Images\delete-user.png" />
     <None Remove="Resources\Images\list-users.png" />
     <None Remove="Resources\Images\parallel.png" />
@@ -20,6 +21,9 @@
 
   <ItemGroup>
     <Content Include="Resources\Images\add-user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\api-call.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\delete-user.png">

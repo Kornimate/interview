@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views"
         mc:Ignorable="d"
-        Title="Create User" Height="450" Width="800"  Icon="../Resources/Images/add-user.png">
+        Title="Create User"
+        Height="450"
+        Width="800"
+        Icon="../Resources/Images/add-user.png">
     <StackPanel
             HorizontalAlignment="Center"
             VerticalAlignment="Center">

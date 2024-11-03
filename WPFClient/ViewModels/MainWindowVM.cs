@@ -81,8 +81,11 @@ namespace WPFClient.ViewModels
         {
             for (int i = 0; i < paramData.Item1; i++)
             {
-                Thread t = new(new ThreadStart(() => OpenRequestsPage(paramData.Item2)));
-                t.SetApartmentState(ApartmentState.STA);
+                int id = i + 1;
+
+                Thread t = new(new ThreadStart(() => OpenRequestsPage(paramData.Item2, (id).ToString())));
+
+                t.SetApartmentState(ApartmentState.STA); // this is the reason for using Thread instead of Task for Parallel, threads needs to have this flag switched on to be able to manage WPF windows
 
                 if (t.IsAlive)
                     threads.Add(t);
@@ -142,13 +145,13 @@ namespace WPFClient.ViewModels
         /// Method to open 1 requests page
         /// </summary>
         /// <param name="numOfRequests"></param>
-        /// <param name="isParallel"></param>
-        private void OpenRequestsPage(int numOfRequests, bool isParallel = false)
+        /// <param name="windowName"></param>
+        private void OpenRequestsPage(int numOfRequests, string windowName = "")
         {
             Window requests = null!;
             try
             {
-                requests = new Requests(numOfRequests, isParallel);
+                requests = new Requests(numOfRequests, "Window " + windowName);
                 requests.Show();
                 Dispatcher.Run();
             }

@@ -10,7 +10,7 @@ namespace WPFClient.Views
     {
         private readonly int numOfRequests;
         private readonly RequestsVM _vm;
-        public Requests(int numOfRequests, bool isParallel)
+        public Requests(int numOfRequests, string title)
         {
             _vm = new RequestsVM();
 
@@ -19,6 +19,7 @@ namespace WPFClient.Views
             this.DataContext = _vm;
             this.Loaded += StartRequests;
             this.numOfRequests = numOfRequests;
+            this.Title = title;
         }
 
         /// <summary>
