@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -139,6 +140,78 @@ namespace WebApiTest
                 new User() { Id = USERS_IN_DB + 1 },
                 typeof(NotFoundResult)
             };
+        }
+
+        /// <summary>
+        /// Test method to test user creation through API endpoint
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        public async Task PostUserTest()
+        {
+            var response = await _controller.PostUser(new User()
+            {
+                Id = USERS_IN_DB + 1,
+                Name = "Test",
+                Country = "Test",
+                City = "Test",
+                Street = "Test",
+                HouseNumber = 1L,
+                ZipCode = 1L
+            });
+
+            Assert.IsInstanceOfType<CreatedResult>(response.Result);
+        }
+
+        /// <summary>
+        /// Test method to test user creation through API endpoint fails
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        [DataRow("","Test","Test","Test")] // invalid name
+        [DataRow("Test","","Test","Test")] // invalid country
+        [DataRow("Test","Test","","Test")] // invalid city
+        [DataRow("Test","Test","Test","")] // invalid street
+        public async Task PostUserTestFails(string name, string country, string city, string street)
+        {
+            var response = await _controller.PostUser(new User()
+            {
+                Id = USERS_IN_DB + 1,
+                Name = name,
+                Country = country,
+                City = city,
+                Street = street,
+                HouseNumber = 1L,
+                ZipCode = 1L
+            });
+
+            Assert.IsInstanceOfType<BadRequestObjectResult>(response.Result);
+        }
+
+        /// <summary>
+        /// Test method to delete user through API endpoint
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        public async Task DeleteUserTest()
+        {
+            var response = await _controller.DeleteUser(1L);
+
+            Assert.IsInstanceOfType<NoContentResult>(response);
+        }
+
+        /// <summary>
+        /// Test method to delete user through API endpoint fails
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        [DataRow(null)]
+        [DataRow(USERS_IN_DB + 1)]
+        public async Task DeleteUserTestFails(long? id)
+        {
+            var response = await _controller.DeleteUser(id);
+
+            Assert.IsInstanceOfType<NotFoundObjectResult>(response);
         }
     }
 }

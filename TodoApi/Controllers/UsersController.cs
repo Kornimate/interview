@@ -129,7 +129,7 @@ namespace TodoApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
-            return StatusCode(StatusCodes.Status201Created, user);
+            return Created("/api/Users", user);
         }
 
         // DELETE: api/TodoItems/5
@@ -139,7 +139,7 @@ namespace TodoApi.Controllers
         /// <param name="id"></param>
         /// <returns>Success if update is successful, otherwise error status</returns>
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteUser(long id)
+        public async Task<ActionResult> DeleteUser(long? id)
         {
             try
             {
