@@ -1,23 +1,20 @@
-﻿using TodoApi.Models;
+﻿using Grpc.Core;
+using Microsoft.EntityFrameworkCore;
+using TodoApi.Models;
 
-namespace UsersApi.Services
+namespace WebApiTest
 {
-    /// <summary>
-    /// Static class to handle API start up
-    /// </summary>
-    public static class StartUpManager
+    public static class TestDbSeeder
     {
         /// <summary>
-        /// Method to seed some base data into DB
+        /// Static method to create db and seed with test data
         /// </summary>
-        /// <param name="sp"></param>
-        public static void APIStartUp(IServiceProvider sp)
+        /// <param name="context"></param>
+        public static void SeedDb(WebAppContext context)
         {
-            var context = sp.GetRequiredService<WebAppContext>();
-
             context.Database.EnsureCreated();
 
-            context.Users.AddRange(new List<User>{
+            context.Users.AddRange(new List<User>{ // there must be at least 1 mock data in db
                 new()
                 {
                     Name = "Csaba",
@@ -39,6 +36,15 @@ namespace UsersApi.Services
             });
 
             context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Static method to delete db
+        /// </summary>
+        /// <param name="context"></param>
+        public static void DeleteDb(WebAppContext context)
+        {
+            context.Database.EnsureDeleted();
         }
     }
 }

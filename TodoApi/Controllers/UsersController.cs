@@ -29,7 +29,7 @@ namespace TodoApi.Controllers
         {
             try
             {
-                return Ok(await _service.GetUsers());
+                return Ok(await _service.GetUsersAsync());
             }
             catch (ArgumentNullException ex)
             {
@@ -52,7 +52,7 @@ namespace TodoApi.Controllers
         {
             try
             {
-                return Ok(await _service.GetUserById(id));
+                return Ok(await _service.GetUserByIdAsync(id));
             }
             catch (ArgumentNullException ex)
             {
@@ -76,7 +76,7 @@ namespace TodoApi.Controllers
         /// <param name="user"></param>
         /// <returns>Success if update is successful, otherwise error status</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(long id, User user)
+        public async Task<ActionResult> PutUser(long id, User user)
         {
             if (id != user.Id)
             {
@@ -85,7 +85,7 @@ namespace TodoApi.Controllers
 
             try
             {
-                await _service.UpdateUser(user);
+                await _service.UpdateUserAsync(user);
             }
             catch (ArgumentNullException ex)
             {
@@ -110,11 +110,11 @@ namespace TodoApi.Controllers
         /// <param name="user"></param>
         /// <returns>Success if update is successful, otherwise error status</returns>
         [HttpPost]
-        public async Task<ActionResult<User>> PostUsers(User user)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
             try
             {
-                await _service.CreateNewUser(user);
+                await _service.CreateNewUserAsync(user);
             }
             catch (ArgumentNullException ex)
             {
@@ -139,11 +139,11 @@ namespace TodoApi.Controllers
         /// <param name="id"></param>
         /// <returns>Success if update is successful, otherwise error status</returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(long id)
+        public async Task<ActionResult> DeleteUser(long id)
         {
             try
             {
-                await _service.DeleteUser(id);
+                await _service.DeleteUserAsync(id);
             }
             catch (ArgumentNullException ex)
             {
@@ -168,11 +168,11 @@ namespace TodoApi.Controllers
         /// <param name="outerEx"></param>
         /// <returns>Error status</returns>
         [NonAction]
-        private async Task<IActionResult> CheckIfUserExistsWithIdAndReturnError(long id, Exception outerEx)
+        private async Task<ActionResult> CheckIfUserExistsWithIdAndReturnError(long id, Exception outerEx)
         {
             try
             {
-                if (!await _service.UserExistsWithId(id))
+                if (!await _service.UserExistsWithIdAsync(id))
                     return NotFound();
 
                 return StatusCode(StatusCodes.Status500InternalServerError, outerEx.Message);

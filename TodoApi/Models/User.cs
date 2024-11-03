@@ -13,10 +13,20 @@ namespace TodoApi.Models
 
         [Required]
         public string? Name { get; set; }
-        public long ZipCode { get; set; }
+
+        [Required]
         public string? Country { get; set; }
+
+        [Required]
         public string? City { get; set; }
+
+        [Required]
         public string? Street { get; set; }
+
+        [Required]
+        public long ZipCode { get; set; }
+
+        [Required]
         public long HouseNumber { get; set; }
 
         [NotMapped]
@@ -24,20 +34,21 @@ namespace TodoApi.Models
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(Name))
-                    return false;
-
-                if (string.IsNullOrWhiteSpace(Country))
-                    return false;
-
-                if (string.IsNullOrWhiteSpace(City))
-                    return false;
-
-                if (string.IsNullOrWhiteSpace(Street))
-                    return false;
-
-                return true;
+                return IsPropertyValid(Name)
+                    && IsPropertyValid(Country)
+                    && IsPropertyValid(City)
+                    && IsPropertyValid(Street);
             }
+        }
+
+        /// <summary>
+        /// Method to decide if given property is valid or not
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        private static bool IsPropertyValid(string? stringProperty)
+        {
+            return !string.IsNullOrWhiteSpace(stringProperty) && stringProperty != String.Empty;
         }
     }
 }

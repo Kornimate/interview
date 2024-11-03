@@ -21,10 +21,10 @@ namespace TodoApi.Services
         /// <returns>Task to be awaited</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
-        public async Task CreateNewUser(User user)
+        public async Task CreateNewUserAsync(User user)
         {
             if (_context.Users == null)
-                throw new ArgumentNullException("no users table");
+                throw new ArgumentNullException(nameof(_context.Users), "no users table");
 
 
             if (!user.IsValid)
@@ -42,9 +42,9 @@ namespace TodoApi.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Task to be awaited</returns>
-        public async Task DeleteUser(long? id)
+        public async Task DeleteUserAsync(long? id)
         {
-            User user = await GetUserById(id);
+            User user = await GetUserByIdAsync(id);
 
             _context.Users.Remove(user);
 
@@ -60,13 +60,13 @@ namespace TodoApi.Services
         /// <returns>Specific user</returns>
         /// <exception cref="InvalidOperationException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task<User> GetUserById(long? id)
+        public async Task<User> GetUserByIdAsync(long? id)
         {
             if (id == null)
                 throw new InvalidOperationException("id can not be null");
 
             if (_context.Users == null)
-                throw new ArgumentNullException("no users table");
+                throw new ArgumentNullException(nameof(_context.Users), "no users table");
 
             return await _context.Users.FirstAsync(u => u.Id == id);
         }
@@ -76,10 +76,10 @@ namespace TodoApi.Services
         /// </summary>
         /// <returns>List of users</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<IEnumerable<User>> GetUsersAsync()
         {
             if (_context.Users == null)
-                throw new ArgumentNullException("no users table");
+                throw new ArgumentNullException(nameof(_context.Users), "no users table");
 
             return await _context.Users.ToArrayAsync();
         }
@@ -90,10 +90,10 @@ namespace TodoApi.Services
         /// <param name="user"></param>
         /// <returns>Task to be awaited</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task UpdateUser(User user)
+        public async Task UpdateUserAsync(User user)
         {
             if (_context.Users == null)
-                throw new ArgumentNullException("no users table");
+                throw new ArgumentNullException(nameof(_context.Users), "no users table");
 
             _context.Entry<User>(user).State = EntityState.Modified;
 
@@ -108,10 +108,10 @@ namespace TodoApi.Services
         /// <param name="id"></param>
         /// <returns>Boolean value indication if the user exists in DB</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task<bool> UserExistsWithId(long id)
+        public async Task<bool> UserExistsWithIdAsync(long id)
         {
             if (_context.Users == null)
-                throw new ArgumentNullException("no users table");
+                throw new ArgumentNullException(nameof(_context.Users), "no users table");
 
             return await _context.Users.AnyAsync(x => x.Id == id);
         }
