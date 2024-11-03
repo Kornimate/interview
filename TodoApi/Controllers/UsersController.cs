@@ -25,6 +25,9 @@ namespace TodoApi.Controllers
         /// </summary>
         /// <returns>List of users</returns>
         [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             try
@@ -33,7 +36,7 @@ namespace TodoApi.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                return Problem(ex.Message);
+                return Problem(ex.Message, statusCode: StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
             {
@@ -41,13 +44,17 @@ namespace TodoApi.Controllers
             }
         }
 
-        // GET: api/User/5
+        // GET: api/Users/5
         /// <summary>
         /// Action to handle GET request for specific user, specified by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Specific user</returns>
         [HttpGet("{id}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<User>> GetUser(long? id)
         {
             try
@@ -56,7 +63,7 @@ namespace TodoApi.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                return Problem(ex.Message);
+                return Problem(ex.Message, statusCode: StatusCodes.Status500InternalServerError);
             }
             catch (InvalidOperationException ex)
             {
@@ -68,7 +75,7 @@ namespace TodoApi.Controllers
             }
         }
 
-        // PUT: api/TodoItems/5
+        // PUT: api/Users/5
         /// <summary>
         /// Action to handle PUT request for existing user to update data
         /// </summary>
@@ -76,6 +83,11 @@ namespace TodoApi.Controllers
         /// <param name="user"></param>
         /// <returns>Success if update is successful, otherwise error status</returns>
         [HttpPut("{id}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> PutUser(long id, User user)
         {
             if (id != user.Id)
@@ -89,7 +101,7 @@ namespace TodoApi.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                return Problem(ex.Message);
+                return Problem(ex.Message, statusCode: StatusCodes.Status500InternalServerError);
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -103,13 +115,17 @@ namespace TodoApi.Controllers
             return NoContent();
         }
 
-        // POST: api/TodoItems
+        // POST: api/Users
         /// <summary>
         /// Action to handle POST request to create new user
         /// </summary>
         /// <param name="user"></param>
         /// <returns>Success if update is successful, otherwise error status</returns>
         [HttpPost]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<User>> PostUser(User user)
         {
             try
@@ -118,7 +134,7 @@ namespace TodoApi.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                return Problem(ex.Message);
+                return Problem(ex.Message, statusCode: StatusCodes.Status500InternalServerError);
             }
             catch (InvalidOperationException ex)
             {
@@ -132,13 +148,17 @@ namespace TodoApi.Controllers
             return Created("/api/Users", user);
         }
 
-        // DELETE: api/TodoItems/5
+        // DELETE: api/Users/5
         /// <summary>
         /// Action to handle DELETE request to delete user
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Success if update is successful, otherwise error status</returns>
         [HttpDelete("{id}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> DeleteUser(long? id)
         {
             try
@@ -147,7 +167,7 @@ namespace TodoApi.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                return Problem(ex.Message);
+                return Problem(ex.Message, statusCode: StatusCodes.Status500InternalServerError);
             }
             catch (InvalidOperationException ex)
             {
@@ -179,7 +199,7 @@ namespace TodoApi.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                return Problem(ex.Message);
+                return Problem(ex.Message, statusCode: StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
             {
