@@ -11,7 +11,6 @@ namespace WPFClient.ViewModels
     {
         private readonly CreateUserModel _model;
 
-        public event EventHandler<List<string>>? InvalidInputData;
         public ICommand CreateUserCommand { get; set; }
 
         public CreateUserVM()
@@ -29,27 +28,16 @@ namespace WPFClient.ViewModels
         {
             List<string> problems = [];
 
-            if (string.IsNullOrWhiteSpace(Name)) //check for faulty inputs
-                problems.Add(nameof(Name));
-
-            if (string.IsNullOrWhiteSpace(ZipCode))
-                problems.Add("Zip Code");
-
-            if (string.IsNullOrWhiteSpace(Country))
-                problems.Add(nameof(Country));
-
-            if (string.IsNullOrWhiteSpace(City))
-                problems.Add(nameof(City));
-
-            if (string.IsNullOrWhiteSpace(Street))
-                problems.Add(nameof(Street));
-
-            if (string.IsNullOrWhiteSpace(HouseNumber))
-                problems.Add("House Number");
+            ValidateStringProperty(Name, nameof(Name), ref problems);
+            ValidateStringProperty(ZipCode, nameof(ZipCode), ref problems);
+            ValidateStringProperty(Country, nameof(Country), ref problems);
+            ValidateStringProperty(City, nameof(City), ref problems);
+            ValidateStringProperty(Street, nameof(Street), ref problems);
+            ValidateStringProperty(HouseNumber, nameof(HouseNumber), ref problems);
 
             if (problems.Count > 0)
             {
-                InvalidInputData?.Invoke(this, problems);
+                CallInvalidinputUserData(this, problems);
                 return;
             }
 

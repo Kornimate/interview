@@ -81,7 +81,8 @@
                         <TextBox 
                             Text="{Binding Path=ZipCode, Mode=TwoWay}"
                             Width="200"
-                            VerticalContentAlignment="Center" />
+                            VerticalContentAlignment="Center"
+                            PreviewTextInput="CheckIfNumber" />
                     </Border>
                     <Border
                         BorderBrush="Black"
@@ -181,7 +182,8 @@
                         <TextBox 
                             Text="{Binding Path=HouseNumber, Mode=TwoWay}"
                             Width="200"
-                            VerticalContentAlignment="Center" />
+                            VerticalContentAlignment="Center"
+                            PreviewTextInput="CheckIfNumber" />
                     </Border>
                 </Grid>
                 <Button 

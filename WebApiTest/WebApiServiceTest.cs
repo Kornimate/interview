@@ -8,6 +8,9 @@ using TodoApi.Services;
 
 namespace WebApiTest
 {
+    /// <summary>
+    /// Class to test web API service
+    /// </summary>
     [TestClass]
     public class WebApiServiceTest : IDisposable
     {
@@ -198,6 +201,12 @@ namespace WebApiTest
                                                                     .GetResult());
         }
 
+        /// <summary>
+        /// Test method to test if user exist in Db with id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="actionResult"></param>
+        /// <returns></returns>
         [TestMethod]
         [DataRow(1L, true)]
         [DataRow(USERS_IN_DB + 1, false)]

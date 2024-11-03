@@ -35,14 +35,22 @@ namespace WPFClient.ViewModels
         /// </summary>
         private void UpdateUser()
         {
-            try
+            List<string> problems = [];
+
+            ValidateStringProperty(Name, nameof(Name), ref problems);
+            ValidateStringProperty(ZipCode, nameof(ZipCode), ref problems);
+            ValidateStringProperty(Country, nameof(Country), ref problems);
+            ValidateStringProperty(City, nameof(City), ref problems);
+            ValidateStringProperty(Street, nameof(Street), ref problems);
+            ValidateStringProperty(HouseNumber, nameof(HouseNumber), ref problems);
+
+            if (problems.Count > 0)
             {
-                _model.UpdateUser(long.Parse(Id!), Name!, long.Parse(ZipCode!), Country, City, Street, long.Parse(HouseNumber!));
+                CallInvalidinputUserData(this, problems);
+                return;
             }
-            catch (Exception)
-            {
-                CallUserFailedToLoad(this, EventArgs.Empty);
-            }
+
+            _model.UpdateUser(long.Parse(Id!), Name!, long.Parse(ZipCode!), Country, City, Street, long.Parse(HouseNumber!));
         }
 
         /// <summary>

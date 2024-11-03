@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Input;
 using WPFClient.ViewModels;
 
 namespace WPFClient.Views
@@ -10,17 +12,30 @@ namespace WPFClient.Views
     {
         private readonly UpdateUserVM _vm;
         private readonly long userId;
+
         public UpdateUser(long userId)
         {
             _vm = new UpdateUserVM();
             _vm.ApiQueryFinished += CloseWindow;
             _vm.UserFailedToLoad += UserFailedToLoad;
+            _vm.InvalidInputData += InvalidInput;
 
             this.userId = userId;
 
             InitializeComponent();
+
             this.DataContext = _vm;
             this.Loaded += GetUser;
+        }
+
+        /// <summary>
+        /// Event handler for invalid input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="problematicProperties"></param>
+        private void InvalidInput(object? sender, List<string> problematicProperties)
+        {
+            MessageBox.Show("Invalid input Data in the following:\n" + String.Join('\n', problematicProperties), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         /// <summary>
@@ -63,5 +78,23 @@ namespace WPFClient.Views
 
             this.Close();
         }
+
+        /// <summary>
+        /// Check for invalid input in TextBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckIfNumber(object sender, TextCompositionEventArgs e)
+        {
+            var regex = NumRegex();
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        /// <summary>
+        /// Static method to get regex at compile time
+        /// </summary>
+        /// <returns></returns>
+        [GeneratedRegex("[^0-9]+")]
+        private static partial Regex NumRegex();
     }
 }

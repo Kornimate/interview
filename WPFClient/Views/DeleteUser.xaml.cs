@@ -19,6 +19,7 @@ namespace WPFClient.Views
             this.userId = userId;
 
             InitializeComponent();
+
             this.DataContext = _vm;
             this.Loaded += GetUser;
         }

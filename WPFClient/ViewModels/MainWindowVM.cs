@@ -149,6 +149,7 @@ namespace WPFClient.ViewModels
         private void OpenRequestsPage(int numOfRequests, string windowName = "")
         {
             Window requests = null!;
+
             try
             {
                 requests = new Requests(numOfRequests, "Window " + windowName);

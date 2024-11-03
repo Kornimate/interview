@@ -62,6 +62,7 @@ namespace WPFClient.ViewModels
 
         public event EventHandler<bool>? ApiQueryFinished;
         public event EventHandler? UserFailedToLoad;
+        public event EventHandler<List<string>>? InvalidInputData;
 
         #endregion
 
@@ -83,6 +84,27 @@ namespace WPFClient.ViewModels
         protected void CallUserFailedToLoad(object? sender, EventArgs e)
         {
             UserFailedToLoad?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Method to notify user about passing invalid input data for user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="problems"></param>
+        protected void CallInvalidinputUserData(object? sender, List<string> problems)
+        {
+            InvalidInputData?.Invoke(sender, problems);
+        }
+
+        /// <summary>
+        /// Method to see if string property value is valid
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="problems"></param>
+        protected void ValidateStringProperty(string? property, string propertyName, ref List<string> problems)
+        {
+            if (string.IsNullOrWhiteSpace(property) || property == String.Empty) //check for faulty inputs
+                problems.Add(propertyName);
         }
     }
 }

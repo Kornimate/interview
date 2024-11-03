@@ -18,6 +18,7 @@ namespace WPFClient.Views
             _vm.InvalidInputData += InvalidInput;
 
             InitializeComponent();
+
             this.DataContext = _vm;
         }
 
@@ -53,8 +54,15 @@ namespace WPFClient.Views
         /// <param name="e"></param>
         private void CheckIfNumber(object sender, TextCompositionEventArgs e)
         {
-            var regex = new Regex("[^0-9]+");
+            var regex = NumRegex();
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        /// <summary>
+        /// Static method to get regex at compile time
+        /// </summary>
+        /// <returns></returns>
+        [GeneratedRegex("[^0-9]+")]
+        private static partial Regex NumRegex();
     }
 }

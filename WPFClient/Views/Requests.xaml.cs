@@ -10,6 +10,7 @@ namespace WPFClient.Views
     {
         private readonly int numOfRequests;
         private readonly RequestsVM _vm;
+
         public Requests(int numOfRequests, string title)
         {
             _vm = new RequestsVM();

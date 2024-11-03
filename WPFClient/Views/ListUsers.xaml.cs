@@ -16,6 +16,7 @@ namespace WPFClient.Views
             _vm.ShowErrorMessageBox += ShowErrorMessageBox;
 
             InitializeComponent();
+
             this.DataContext = _vm;
             this.Loaded += WindowLoaded;
         }
@@ -38,6 +39,8 @@ namespace WPFClient.Views
         private void ShowErrorMessageBox(object? sender, string text)
         {
             MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            this.Close();
         }
     }
 }

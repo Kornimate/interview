@@ -9,8 +9,11 @@ using TodoApi.Services;
 
 namespace WebApiTest
 {
+    /// <summary>
+    /// Class to test web API controller
+    /// </summary>
     [TestClass]
-    public class WebApiUsersControllerTest
+    public class WebApiUsersControllerTest : IDisposable
     {
         private readonly UsersController _controller;
         private readonly WebAppContext _context;

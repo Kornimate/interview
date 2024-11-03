@@ -4,6 +4,9 @@ using TodoApi.Models;
 
 namespace WebApiTest
 {
+    /// <summary>
+    /// Static class for Db actions handling
+    /// </summary>
     public static class TestDbSeeder
     {
         /// <summary>
