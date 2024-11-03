@@ -30,7 +30,7 @@ namespace TodoApi.Models
         public long HouseNumber { get; set; }
 
         [NotMapped]
-        public bool IsValid //checks if user data is valud
+        public bool IsValid //checks if user data is valid
         {
             get
             {

@@ -42,7 +42,7 @@ namespace WPFClient.Models
         /// <returns></returns>
         private static string GetThreadLoggingTemplate()
         {
-            return $"[Thread {Environment.CurrentManagedThreadId}][info]";
+            return $"[thread({Environment.CurrentManagedThreadId})] :: [info] ::";
         }
     }
 }

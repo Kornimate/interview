@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WPFClient.Models.CreateUserModel">
+    <Position X="1.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CreateUserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.Models.DeleteUserModel">
+    <Position X="3.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DeleteUserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.Models.ListUsersModel">
+    <Position X="8" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ListUsersModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.Models.ModelBase">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAEAAAAAQABgAAAAAAAAAEAAAAAkAAAA=</HashCode>
+      <FileName>Models\ModelBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.Models.RequestsModel">
+    <Position X="2.5" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RequestsModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.Models.UpdateUserModel">
+    <Position X="8" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UpdateUserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.ViewModels.CreateUserVM">
+    <Position X="2.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>ViewModels\CreateUserVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.ViewModels.DeleteUserVM">
+    <Position X="4.75" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAEAgAAAAAAAAAAAAAAEAAAAAgAAAA=</HashCode>
+      <FileName>ViewModels\DeleteUserVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.ViewModels.ListUsersVM">
+    <Position X="17.25" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAQAEEAAiAAIAAAAAAAAAAAAAAADAAIAAA=</HashCode>
+      <FileName>ViewModels\ListUsersVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.ViewModels.MainWindowVM">
+    <Position X="13.75" Y="5.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAAEAICAAAAAAAEgAgCAAAAAAAAIAYQAAAACgA=</HashCode>
+      <FileName>ViewModels\MainWindowVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.ViewModels.RequestsVM">
+    <Position X="11.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAgAAAAAAAAAQAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\RequestsVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.ViewModels.UpdateUserVM">
+    <Position X="9.25" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAQAAAAAAECAAAAgAAAA=</HashCode>
+      <FileName>ViewModels\UpdateUserVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFClient.ViewModels.ViewModelBase">
+    <Position X="7" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAACIAAAQAAAAgAIAEBQAAwAAEIAAAABAAoAACACAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
